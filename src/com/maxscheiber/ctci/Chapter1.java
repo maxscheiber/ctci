@@ -101,7 +101,7 @@ public class Chapter1 {
 	}
 	
 	/**
-	 * Write a method to replace all spaces in a string with ‘%20’. 1.5
+	 * Write a method to replace all spaces in a string with '%20'. 1.5
 	 * @param in <code>String</code> to sanitize
 	 * @return sanitized <code>String</code>
 	 */
@@ -117,7 +117,7 @@ public class Chapter1 {
 	
 	/**
 	 * Given an image represented by an NxN matrix, where each pixel in the 
-	 * image is 4 bytes, write a method to rotate the image by 90 degrees.
+	 * image is 4 bytes, write a method to rotate the image by 90 degrees. 1.6
 	 * @param in two-dimensional <code>int</code> array to rotate clockwise
 	 * @return clockwise rotated matrix
 	 */
@@ -182,7 +182,7 @@ public class Chapter1 {
 	 * Assume you have a method isSubstring which checks if one word is a 
 	 * substring of another. Given two strings, s1 and s2, write code to check
 	 * if s2 is a rotation of s1 using only one call to isSubstring (i.e., 
-	 * “waterbottle” is a rotation of “erbottlewat”). 1.8
+	 * "waterbottle" is a rotation of "erbottlewat"). 1.8
 	 * 
 	 * Note that we use contains in lieu of "isSubstring."
 	 * @param s1 
