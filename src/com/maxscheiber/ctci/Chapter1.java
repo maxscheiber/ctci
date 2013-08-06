@@ -8,8 +8,7 @@ public class Chapter1 {
 	 * Implement an algorithm to determine if a string has all unique 
 	 * characters. 1.1
 	 * @param in inputted string to check
-	 * @return <code>true</code> if <code>in</code> has all unique characters, 
-	 * <code>false</code> otherwise
+	 * @return true if in has all unique characters, false otherwise
 	 */
 	public static boolean hasUniqueChars(String in) {
 		if (in == null) {
@@ -29,8 +28,7 @@ public class Chapter1 {
 	/**
 	 * What if you cannot use additional data structures? 1.1
 	 * @param in inputted string to check
-	 * @return <code>true</code> if <code>in</code> has all unique characters, 
-	 * <code>false</code> otherwise
+	 * @return true if in has all unique characters, false otherwise
 	 */
 	public static boolean hasUniqueChars2(String in) {
 		if (in == null) {
@@ -56,22 +54,19 @@ public class Chapter1 {
 	 * Write a method to decide if two strings are anagrams or not. 1.4
 	 * @param one first anagram contendor
 	 * @param two second anagram contendor
-	 * @return <code>true</code> if <code>one</code> and <code>two</code> are
-	 * anagrams, <code>false</code> otherwise
+	 * @return true if one and two are anagrams, false otherwise
 	 */
 	public static boolean areAnagrams(String one, String two) {
 		return isStringSubset(one, two) && isStringSubset(two, one);
 	}
 	
 	/**
-	 * Returns <code>true</code> if the <code>Character</code>s in
-	 * <code>one</code> compose a subset of the <code>Character</code>s in
-	 * <code>two</code>, <code>false</code> otherwise
-	 * @param one <code>String</code> to check if is a subset
-	 * @param two <code>String</code> that may be a superset
-	 * @return <code>true</code> if the <code>Character</code>s in
-	 * <code>one</code> compose a subset of the <code>Character</code>s in
-	 * <code>two</code>, <code>false</code> otherwise
+	 * Returns true if the Characters in one compose a subset of the Characters
+	 * in two, false otherwise
+	 * @param one String to check if is a subset
+	 * @param two String that may be a superset
+	 * @return true if the Characters in one compose a subset of the Characters
+	 * in two, false otherwise
 	 */
 	private static boolean isStringSubset(String one, String two) {
 		if (one == null || two == null) {
@@ -102,8 +97,8 @@ public class Chapter1 {
 	
 	/**
 	 * Write a method to replace all spaces in a string with '%20'. 1.5
-	 * @param in <code>String</code> to sanitize
-	 * @return sanitized <code>String</code>
+	 * @param in String to sanitize
+	 * @return sanitized String
 	 */
 	public static String sanitizeSpaces(String in) {
 		if (in == null) {
@@ -118,7 +113,7 @@ public class Chapter1 {
 	/**
 	 * Given an image represented by an NxN matrix, where each pixel in the 
 	 * image is 4 bytes, write a method to rotate the image by 90 degrees. 1.6
-	 * @param in two-dimensional <code>int</code> array to rotate clockwise
+	 * @param in two-dimensional int array to rotate clockwise
 	 * @return clockwise rotated matrix
 	 */
 	public static int[][] rotateMatrix(int[][] in) {
@@ -187,8 +182,7 @@ public class Chapter1 {
 	 * Note that we use contains in lieu of "isSubstring."
 	 * @param s1 
 	 * @param s2
-	 * @return <code>true</code> if <code>s2</code> is a rotation of
-	 * <code>s1</code>, <code>false</code> otherwise
+	 * @return true if s2 is a rotation of s1, false otherwise
 	 */
 	public static boolean isRotation(String s1, String s2) {
 		if (s1 == null || s2 == null) {
