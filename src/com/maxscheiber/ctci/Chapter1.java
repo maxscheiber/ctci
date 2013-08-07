@@ -57,6 +57,15 @@ public class Chapter1 {
 	 * @return true if one and two are anagrams, false otherwise
 	 */
 	public static boolean areAnagrams(String one, String two) {
+		if (one == null || two == null) {
+			return false;
+		}
+		
+		// anagrams, by definition, have the same length
+		if (one.length() != two.length()) {
+			return false;
+		}
+		
 		return isStringSubset(one, two) && isStringSubset(two, one);
 	}
 	
@@ -69,15 +78,6 @@ public class Chapter1 {
 	 * in two, false otherwise
 	 */
 	private static boolean isStringSubset(String one, String two) {
-		if (one == null || two == null) {
-			return false;
-		}
-		
-		// anagrams, by definition, have the same length
-		if (one.length() != two.length()) {
-			return false;
-		}
-		
 		// all chars that String two has
 		Set<Character> chars = new HashSet<Character>();
 		for (int i = 0; i < two.length(); i++) {
