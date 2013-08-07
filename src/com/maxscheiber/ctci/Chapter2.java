@@ -61,4 +61,68 @@ public class Chapter2 {
 		
 		return in;
 	}
+	
+	/**
+	 * Implement an algorithm to delete a node in the middle of a single linked
+	 * list, given only access to that node. 2.3
+	 * @param <A>
+	 * @param in Node to delete
+	 */
+	public static <A> void deleteNode(Node<A> in) {
+		if (in == null) {
+			return;
+		}
+		
+		// in.next can never be null since node is in the middle of the LinkedList
+		in.v = in.next.v;
+		in.next = in.next.next;
+	}
+	
+	/**
+	 * You have two numbers represented by a linked list, where each node 
+	 * contains a single digit. The digits are stored in reverse order, such 
+	 * that the 1Õs digit is at the head of the list. Write a function that adds
+	 * the two numbers and returns the sum as a linked list. 2.4
+	 * @param l1 first number to add
+	 * @param l2 second number to add
+	 * @return LinkedList representation of sum of l1 and l2
+	 */
+	public static Node<Integer> add(Node<Integer> l1, Node<Integer> l2) {
+		if (l1 == null && l2 == null) {
+			return null;
+		}
+		
+		Node<Integer> result = null;
+		int carry = 0;
+		
+		Node<Integer> n1 = l1;
+		Node<Integer> n2 = l2;
+		while (n1 != null || n2 != null) {
+			int sum;
+			
+			if (n2 == null) {
+				sum = n1.v;
+				n1 = n1.next;
+			}
+			else if (n1 == null) {
+				sum = n2.v;
+				n2 = n2.next;
+			}
+			else {
+				sum = n1.v + n2.v;
+				n1 = n1.next;
+				n2 = n2.next;
+			}
+			
+			result = new Node<Integer>(0, result);
+			result.v = (sum % 10) + carry;
+			carry = sum / 10;
+		}
+		
+		if (carry > 0) {
+			result = new Node<Integer>(carry, result);
+		}
+		
+		return result;
+	}
 }
