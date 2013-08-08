@@ -63,6 +63,35 @@ public class Chapter2 {
 	}
 	
 	/**
+	 * Implement an algorithm to find the nth to last element of a singly linked
+	 * list. 2.2
+	 * @param in inputted LinkedList
+	 * @param n # of elements from end we want to find
+	 * @return nth to last element
+	 */
+	public static <A> Node<A> findNthToLast(Node<A> in, int n) {
+		if (n <= 0) {
+			return null;
+		}
+		
+		Node<A> n1 = in;
+		Node<A> n2 = in;
+		for (int i = 1; i <= n; i++) {
+			if (n2 == null) {
+				return null;
+			}
+			n2 = n2.next;
+		}
+		
+		while (n2 != null) {
+			n1 = n1.next;
+			n2 = n2.next;
+		}
+		
+		return n1;
+	}
+	
+	/**
 	 * Implement an algorithm to delete a node in the middle of a single linked
 	 * list, given only access to that node. 2.3
 	 * @param <A>

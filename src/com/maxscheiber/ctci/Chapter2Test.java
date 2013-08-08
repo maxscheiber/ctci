@@ -68,6 +68,21 @@ public class Chapter2Test {
 	}
 	
 	@Test
+	public void testFindNthToLast() {
+		assertNull("Null list", Chapter2.findNthToLast(null, 0));
+		
+		Node<Integer> n1 = new Node<Integer>(1, null);
+		assertNull("Invalid n", Chapter2.findNthToLast(n1, 0));
+		
+		Node<Integer> n2 = new Node<Integer>(2, null);
+		n1.next = n2;
+		assertTrue("Last element", 2 == Chapter2.findNthToLast(n1, 1).v);
+		assertNull("Last element", Chapter2.findNthToLast(n1, 1).next);
+		assertTrue("First element", 1 == Chapter2.findNthToLast(n1, 2).v);
+		assertNull("First element", Chapter2.findNthToLast(n1, 2).next.next);
+	}
+	
+	@Test
 	public void testDeleteNode() {
 		Node<Integer> n3 = new Node<Integer>(3, null);
 		Node<Integer> n2 = new Node<Integer>(2, n3);
