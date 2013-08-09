@@ -218,12 +218,12 @@ public class Chapter3 {
 	 * @param tgt stack to push onto
 	 */
 	private static void move(Stack<Integer> src, Stack<Integer> tgt) {
-		if (tgt.empty()) {
-			// System.out.println("Moving " + src.peek() + " to empty stack");
+		/*if (tgt.empty()) {
+			System.out.println("Moving " + src.peek() + " to empty stack");
 		} else {
-			// System.out.println("Moving " + src.peek() + " on top of " +
-			// tgt.peek());
-		}
+			System.out.println("Moving " + src.peek() + " on top of " +
+			tgt.peek());
+		} */
 		tgt.push(src.pop());
 	}
      /**
@@ -333,7 +333,7 @@ public class Chapter3 {
 	 * Write a program to sort a stack in ascending order. You should not make
 	 * any assumptions about how the stack is implemented. The following are the
 	 * only functions that should be used to write this program: push | pop |
-	 * peek | isEmpty.
+	 * peek | isEmpty. 3.6
 	 * @param in stack to sort
 	 * @return sorted stack
 	 */
