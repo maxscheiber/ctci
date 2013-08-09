@@ -88,9 +88,7 @@ public class Chapter4 {
 			return t.l;
 		} else {
 			int min = min(t.r);
-			t.r = delete(min, t.r);
-			t.v = min;
-			return t;
+			return new BST(t.l, min, delete(min, t.r));
 		}
 	}
 	
