@@ -328,4 +328,38 @@ public class Chapter3 {
 			}
 		}
 	}
+	
+	/**
+	 * Write a program to sort a stack in ascending order. You should not make
+	 * any assumptions about how the stack is implemented. The following are the
+	 * only functions that should be used to write this program: push | pop |
+	 * peek | isEmpty.
+	 * @param in stack to sort
+	 * @return sorted stack
+	 */
+	public static Stack<Integer> stackSort(Stack<Integer> in) {
+		if (in == null) {
+			return null;
+		}
+		
+		// INVARIANT: out will remain in sorted order
+		Stack<Integer> out = new Stack<Integer>();
+		
+		while (!in.empty()) {
+			int v = in.pop();
+			int i;
+			// find where v belongs in sorted order
+			for (i = 0; !out.empty() && out.peek() < v; i++) {
+				in.push(out.pop());
+			}
+			// push it onto there
+			out.push(v);
+			// push the rest back on
+			for (; i > 0; i--) {
+				out.push(in.pop());
+			}
+		}
+		
+		return out;
+	}
 }

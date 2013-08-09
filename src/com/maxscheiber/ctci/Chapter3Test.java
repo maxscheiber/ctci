@@ -161,4 +161,36 @@ public class Chapter3Test {
 		assertTrue("remove 3", 3 == q.remove());
 		assertEquals("empty queue", 0, q.size());
 	}
+	
+	@Test
+	public void testStackSort() {
+		assertNull("Null input", Chapter3.stackSort(null));
+		assertEquals("Empty input", 0, Chapter3.stackSort(new Stack<Integer>()).size());
+		
+		Stack<Integer> in = new Stack<Integer>();
+		in.push(1);
+		Stack<Integer> sorted = Chapter3.stackSort(in);
+		assertTrue("Single element", 1 == sorted.pop());
+		assertEquals("Single element", 0, sorted.size());
+		
+		in = new Stack<Integer>();
+		in.push(3);
+		in.push(2);
+		in.push(1);
+		sorted = Chapter3.stackSort(in);
+		assertTrue("Preserves sorted order", 1 == sorted.pop());
+		assertTrue("Preserves sorted order", 2 == sorted.pop());
+		assertTrue("Preserves sorted order", 3 == sorted.pop());
+		assertEquals("Preserves sorted order", 0, sorted.size());
+		
+		in = new Stack<Integer>();
+		in.push(2);
+		in.push(1);
+		in.push(3);
+		sorted = Chapter3.stackSort(in);
+		assertTrue("Sorts", 1 == sorted.pop());
+		assertTrue("Sorts", 2 == sorted.pop());
+		assertTrue("Sorts", 3 == sorted.pop());
+		assertEquals("Sorts", 0, sorted.size());
+	}
 }
