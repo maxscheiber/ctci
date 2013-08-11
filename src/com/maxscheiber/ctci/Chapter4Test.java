@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import com.maxscheiber.ctci.Chapter4.BST;
 import com.maxscheiber.ctci.Chapter4.Node;
+import com.maxscheiber.ctci.Chapter4.BinaryTree;
 
 public class Chapter4Test {
 	@Test
@@ -122,5 +123,62 @@ public class Chapter4Test {
 		assertEquals("Three-level tree", 1, Chapter4.levelorder(t).get(0).size());
 		assertEquals("Three-level tree", 2, Chapter4.levelorder(t).get(1).size());
 		assertEquals("Three-level tree", 3, Chapter4.levelorder(t).get(2).size());
+	}
+	
+	@Test
+	public void testAncestor() {
+		assertNull("Null tree", Chapter4.ancestor(null, null, null));
+		
+		/*
+		 *         0
+		 *     -2     2
+		 *  -3   -1 1   3
+		 */
+		BinaryTree<Integer> t = new BinaryTree<Integer>(
+				new BinaryTree<Integer>(
+						new BinaryTree<Integer>(-3), -2, new BinaryTree<Integer>(-1)
+				), 
+				0, 
+				new BinaryTree<Integer>(
+						new BinaryTree<Integer>(1), 2, new BinaryTree<Integer>(3)
+				)
+		);
+		assertTrue(0 == Chapter4.ancestor(0, -1, t));
+		assertTrue(0 == Chapter4.ancestor(0, -2, t));
+		assertTrue(0 == Chapter4.ancestor(0, 3, t));
+		assertTrue(0 == Chapter4.ancestor(-2, 3, t));
+		assertTrue(0 == Chapter4.ancestor(-3, 1, t));
+		assertTrue(0 == Chapter4.ancestor(0, -1, t));
+		assertTrue(-2 == Chapter4.ancestor(-3, -2, t));
+		assertTrue(-2 == Chapter4.ancestor(-3, -1, t));
+		assertTrue(2 == Chapter4.ancestor(2, 1, t));
+		assertTrue(2 == Chapter4.ancestor(1, 3, t));
+	}
+	
+	@Test
+	public void testIsSubtree() {
+		assertFalse("Null t1", Chapter4.isSubtree(null, new BinaryTree<Integer>(1)));
+		assertTrue("Null t2", Chapter4.isSubtree(new BinaryTree<Integer>(1), null));
+		assertTrue("Null t1 and t2", Chapter4.isSubtree(null, null));
+		
+		/*
+		 *         0
+		 *     -2     2
+		 *  -3   -1 1   3
+		 */
+		BinaryTree<Integer> t1 = new BinaryTree<Integer>(
+				new BinaryTree<Integer>(
+						new BinaryTree<Integer>(-3), -2, new BinaryTree<Integer>(-1)
+				), 
+				0, 
+				new BinaryTree<Integer>(
+						new BinaryTree<Integer>(1), 2, new BinaryTree<Integer>(3)
+				)
+		);
+		assertTrue(Chapter4.isSubtree(t1, new BinaryTree<Integer>(1)));
+		assertTrue(Chapter4.isSubtree(t1, new BinaryTree<Integer>(
+				new BinaryTree<Integer>(1), 2, new BinaryTree<Integer>(3))));
+		assertTrue(Chapter4.isSubtree(t1, new BinaryTree<Integer>(
+				new BinaryTree<Integer>(1), 2, new BinaryTree<Integer>(4))));
 	}
 }

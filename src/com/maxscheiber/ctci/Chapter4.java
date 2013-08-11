@@ -303,4 +303,108 @@ public class Chapter4 {
 		
 		return depth;
 	}
+	
+	public static class BinaryTree<T> {
+		private BinaryTree<T> l;
+		private T v;
+		private BinaryTree<T> r;
+		
+		public BinaryTree(T v) {
+			this.v = v;
+		}
+		
+		public BinaryTree(BinaryTree<T> l, T v, BinaryTree<T> r) {
+			this.l = l;
+			this.v = v;
+			this.r = r;
+		}
+		
+		public BinaryTree<T> l() {
+			return l;
+		}
+		
+		public T v() {
+			return v;
+		}
+		
+		public BinaryTree<T> r() {
+			return r;
+		}
+	}
+	
+	/**
+	 * Design an algorithm and write code to find the first common ancestor of
+	 * two nodes in a binary tree. Avoid storing additional nodes in a data
+	 * structure. 4.6
+	 * @param a first node
+	 * @param b second node
+	 * @param t binary tree in which to search
+	 * @return value of the common ancestor of a and b
+	 */
+	public static <T> T ancestor(T a, T b, BinaryTree<T> t) {
+		if (t == null) {
+			return null;
+		}
+		return ancestor(a, b, t.v, t);
+	}
+	
+	/**
+	 * 
+	 * @param a
+	 * @param b
+	 * @param p parent of the current node being considered; will never be null
+	 * @param t
+	 * @return
+	 */
+	private static <T> T ancestor(T a, T b, T p, BinaryTree<T> t) {
+		// base case, null tree
+		if (t == null || a == null || b == null) {
+			return null;
+		}
+		
+		T al = ancestor(a, b, t.v, t.l); // left ancestor
+		T ar = ancestor(a, b, t.v, t.r); // right ancestor
+		
+		// a is the ancestor of b, or vice versa
+		if (t.v.equals(al) || t.v.equals(ar)) {
+			return t.v;
+		}
+		// no longer have to look any deeper
+		else if (t.v.equals(a) || t.v.equals(b)) {
+			return p;
+		}
+		
+		if (ar == null) {
+			return al; // both are on the left
+		} else if (al == null) {
+			return ar; // both are on the right
+		} else if (al.equals(ar)) {
+			return t.v; // found the closest ancestor
+		} else {
+			return p; // what do, Misc?
+		}
+	}
+	
+	/**
+	 * You have two very large binary trees: T1, with millions of nodes, and T2,
+	 * with hundreds of nodes. Create an algorithm to decide if T2 is a subtree
+	 * of T1. 4.7
+	 * @param t1 tree, ~ 10^6 nodes
+	 * @param t2 tree, ~ 10^2 nodes
+	 * @return true if t2 is a subtree of t1, false otherwise
+	 */
+	public static <T> boolean isSubtree(BinaryTree<T> t1, BinaryTree<T> t2) {
+		if (t2 == null) {
+			return true;
+		} else if (t1 == null) {
+			return false;
+		}
+		
+		// basically, having a big thunk is better than O(n) space for t1
+		if (t1.v.equals(t2.v)) {
+			return isSubtree(t1.l, t2.l) && isSubtree(t1.r, t2.r);
+		} else {
+			return isSubtree(t1.l, t2.l) || isSubtree(t1.r, t2.r);
+		}
+	}
 }
