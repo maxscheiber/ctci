@@ -2,6 +2,7 @@ package com.maxscheiber.ctci;
 
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.Set;
 
@@ -264,5 +265,42 @@ public class Chapter4 {
 		}
 		int mid = lo + (hi-lo)/2;
 		return new BST(divideBST(lo, mid-1, xs), xs[mid], divideBST(mid+1, hi, xs));
+	}
+	
+	/**
+	 * Given a binary search tree, design an algorithm which creates a linked
+	 * list of all the nodes at each depth (i.e., if you have a tree with depth
+	 * D, you'll have D linked lists). 4.4
+	 * @param t inputted BST
+	 * @return BFS traversal list
+	 */
+	public static List<List<Integer>> levelorder(BST t) {
+		if (t == null) {
+			return new LinkedList<List<Integer>>();
+		}
+		
+		Queue<BST> now = new LinkedList<BST>();
+		Queue<BST> next;
+		List<List<Integer>> depth = new LinkedList<List<Integer>>();
+		
+		// BST BFS
+		now.add(t);
+		while (!now.isEmpty()) {
+			List<Integer> vals = new LinkedList<Integer>();
+			next = new LinkedList<BST>();
+			while (!now.isEmpty()) {
+				if (now.peek().l != null) {
+					next.add(now.peek().l);
+				}
+				if (now.peek().r != null) {
+					next.add(now.peek().r);
+				}
+				vals.add(now.poll().v);
+			}
+			depth.add(vals);
+			now = next;
+		}
+		
+		return depth;
 	}
 }

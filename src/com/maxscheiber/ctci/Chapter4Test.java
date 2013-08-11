@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
@@ -97,5 +98,29 @@ public class Chapter4Test {
 		}
 		assertEquals("Length " + N, 1 + Math.ceil((int) (Math.log(N) / Math.log(2))), 
 				Chapter4.depth(t), 0.01);
+	}
+	
+	@Test
+	public void testLevelorder() {
+		assertEquals("Empty tree", 0, Chapter4.levelorder(null).size());
+		
+		BST t = new BST(0);
+		assertEquals("One-level tree", 1, Chapter4.levelorder(t).size());
+		assertEquals("One-level tree", 1, Chapter4.levelorder(t).get(0).size());
+		assertTrue("One-level tree", 0 == Chapter4.levelorder(t).get(0).get(0));
+		
+		t = Chapter4.insert(-2, t);
+		t = Chapter4.insert(2, t);
+		assertEquals("Two-level tree", 2, Chapter4.levelorder(t).size());
+		assertEquals("Two-level tree", 1, Chapter4.levelorder(t).get(0).size());
+		assertEquals("Two-level tree", 2, Chapter4.levelorder(t).get(1).size());
+		
+		t = Chapter4.insert(-3, t);
+		t = Chapter4.insert(-1, t);
+		t = Chapter4.insert(1, t);
+		assertEquals("Three-level tree", 3, Chapter4.levelorder(t).size());
+		assertEquals("Three-level tree", 1, Chapter4.levelorder(t).get(0).size());
+		assertEquals("Three-level tree", 2, Chapter4.levelorder(t).get(1).size());
+		assertEquals("Three-level tree", 3, Chapter4.levelorder(t).get(2).size());
 	}
 }
