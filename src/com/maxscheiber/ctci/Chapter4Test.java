@@ -181,4 +181,28 @@ public class Chapter4Test {
 		assertTrue(Chapter4.isSubtree(t1, new BinaryTree<Integer>(
 				new BinaryTree<Integer>(1), 2, new BinaryTree<Integer>(4))));
 	}
+	
+	@Test
+	public void testPrintSumPaths() {
+		Chapter4.printSumPaths(null, 0); // should print nothing
+		
+		/*
+		 *         0
+		 *     -2     2
+		 *  -3   -1 1   3
+		 */
+		BinaryTree<Integer> t1 = new BinaryTree<Integer>(
+				new BinaryTree<Integer>(
+						new BinaryTree<Integer>(-3), -2, new BinaryTree<Integer>(-1)
+				), 
+				0, 
+				new BinaryTree<Integer>(
+						new BinaryTree<Integer>(1), 2, new BinaryTree<Integer>(3)
+				)
+		);
+		
+		Chapter4.printSumPaths(t1, 0); // should print leading node
+		Chapter4.printSumPaths(t1, -5); // should print 0 - -2 - -3 and -2 - -3
+		Chapter4.printSumPaths(t1, 3); // should print 0 - 2 - 1, 2 - 1, and 3
+	}
 }

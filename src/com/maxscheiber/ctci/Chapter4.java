@@ -1,5 +1,6 @@
 package com.maxscheiber.ctci;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -406,5 +407,52 @@ public class Chapter4 {
 		} else {
 			return isSubtree(t1.l, t2.l) || isSubtree(t1.r, t2.r);
 		}
+	}
+	
+	/**
+	 * You are given a binary tree in which each node contains a value. Design
+	 * an algorithm to print all paths which sum up to that value. Note that it
+	 * can be any path in the tree - it does not have to start at the root. 4.8
+	 * 
+	 * So this currently has the issue of printing paths duplicate times. *sigh*
+	 * @param t tree to search for paths on
+	 * @param sum sum we're looking for
+	 */
+	public static void printSumPaths(BinaryTree<Integer> t, int sum) {
+		printSumPaths(t, sum, new ArrayList<Integer>());
+	}
+	
+	private static void printSumPaths(BinaryTree<Integer> t, int sum, List<Integer> buf) {
+		if (t == null) {
+			for (int i = 0; i < buf.size(); i++) {
+				int tmp = 0;
+				for (int j = i; j < buf.size(); j++) {
+					if (i == j) {
+						tmp = buf.get(j);
+					} else {
+						tmp += buf.get(j);
+					}
+					if (tmp == sum) {
+						printList(buf, i, j);
+					}
+				}
+			}
+		} else {
+			buf.add(t.v);
+			printSumPaths(t.l, sum, new ArrayList<Integer>(buf));
+			printSumPaths(t.r, sum, new ArrayList<Integer>(buf));
+		}
+	}
+	
+	private static void printList(List<Integer> buf, int start, int end) {
+		StringBuilder sb = new StringBuilder();
+		for (int i = start; i <= end; i++) {
+			sb.append(buf.get(i) + "");
+			if (i != end) {
+				sb.append(" - ");
+			}
+		}
+		
+		System.out.println(sb.toString());
 	}
 }
