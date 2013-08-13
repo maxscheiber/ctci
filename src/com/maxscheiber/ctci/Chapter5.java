@@ -89,4 +89,39 @@ public class Chapter5 {
 		
 		return str + sb.toString();
 	}
+	
+	/**
+	 * Write a function to determine the number of bits required to convert
+	 * integer A to integer B. 5.5
+	 * @param A starting int
+	 * @param B ending int
+	 * @return # of bits that must change to get from A to B
+	 */
+	public static int convert(int A, int B) {
+		int C = A ^ B;
+		int s = 0;
+		while (C > 0) {
+			s += C % 2;
+			C >>= 1;
+		}
+		return s;
+	}
+	
+	/**
+	 * Write a program to swap odd and even bits in an integer with as few
+	 * instructions as possible (e.g., bit 0 and bit 1 are swapped, bit 2 and
+	 * bit 3 are swapped, etc.). 5.6
+	 * @param n number to swap bits on
+	 * @return n with bits swapped as described
+	 */
+	public static int pairwiseSwap(int n) {
+		int o = 0;
+		for (int i = 0; i < 32; i += 2) {
+			int t = (n & (3 << i)) >> i; // grab bits i and i+1
+			n &= ~(3 << i); // clear bits i and i+1
+			n |= ((t >> 1) << i);
+			n |= (t & 1) << (i+1);
+		}
+		return n;
+	}
 }
